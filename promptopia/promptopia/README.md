@@ -35,6 +35,15 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## 相关组件库
+### 1. next-auth
+    它是集成身份验证和授权功能，next-auth/react是next-auth库的React的封装，他提供了一组React的组件和钩子，用于在Next.js应用程序中处理身份验证逻辑,它提供了实现用户注册，登陆，注销和密码重置功能，其中还有以下组件和钩子
+  - useSesson 钩子：用于获取当前用户的会话信息
+  - Provider：组件：用于整个程序中提供身份验证的上下文
+  - SignIn:组件： 用于呈现登陆界面
+  - SignOut: 组件： 用于呈现注销按钮
+  - getSession: 一个函数：用于获取服务器渲染期间的用户会话信息
+
 ## 相关问题
 ### 1. "use client" 问题
     `nextjs 中报错You're importing a component that needs useEffect. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default. Learn more: https://nextjs.org/docs/getting-started/react-essential`
