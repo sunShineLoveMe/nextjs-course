@@ -36,3 +36,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## 相关问题
+- Suspense和promise 问题
+  ```
+    <Suspense fallback={<h2>Loading...</h2>}>
+        <UserPosts promise={userPostsData} />
+    </Suspense>
+  ```
+  1. `Suspense` 是 React 提供的一个组件，用于实现延迟加载和代码分割。它可以在组件树中的某个位置标记出需要延迟加载的部分，并在加载完成之前显示一个回退（fallback）内容。在这段代码中，`Suspense` 组件用于包裹 `<UserPosts promise={userPostsData} />` 组件，以便在加载 `userPostsData` 数据时显示一个加载中的提示。
+   
+  2. `<UserPosts promise={userPostsData} />` 是一个自定义组件，它接受一个名为 `promise` 的 prop。在这里，`promise` prop 被赋值为 `userPostsData`，即 `getUserPosts(userId)` 所返回的 Promise 对象。这样做的目的是将异步获取的数据传递给 `<UserPosts>` 组件，以便在组件内部使用该数据进行渲染或其他操作。
