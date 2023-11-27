@@ -47,3 +47,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   1. `Suspense` 是 React 提供的一个组件，用于实现延迟加载和代码分割。它可以在组件树中的某个位置标记出需要延迟加载的部分，并在加载完成之前显示一个回退（fallback）内容。在这段代码中，`Suspense` 组件用于包裹 `<UserPosts promise={userPostsData} />` 组件，以便在加载 `userPostsData` 数据时显示一个加载中的提示。
    
   2. `<UserPosts promise={userPostsData} />` 是一个自定义组件，它接受一个名为 `promise` 的 prop。在这里，`promise` prop 被赋值为 `userPostsData`，即 `getUserPosts(userId)` 所返回的 Promise 对象。这样做的目的是将异步获取的数据传递给 `<UserPosts>` 组件，以便在组件内部使用该数据进行渲染或其他操作。
+
+
+- **nextjs中SSG, SSR, ISR的区别**
+  
+    | SSG      | SSR | ISR     |
+    | :---        |    :----:   |          ---: |
+    | 适应于不频繁变化的页面，比如博客或者产品列表      | 适应于需要实时数据的页面       | 适用于需要定期更新的页面   |
+    | 在项目实际中，在构建中生成静态页面，然后部署到CDN或者静态文件服务器上   | 对于需要根据用户请求动态生成内容的页面，可以使用ssr策略保证每次请求都能获得最新数据        | 对于需要定期更新的页面，可以使用该策略来提供预先生成的静态内容，并在后台定期更新数据，从而保持页面内容的实时性      |
+    | 可以通过getStaticProps和getStaticPaths方法实现   | 可以通过getServerSideProps实现        | 可以通过可以通过getStaticProps和revalidate属性来实现      |
