@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { remark } from 'remark';
+import html from 'remark-html';
+
 
 // post路径，返回文件名数组
 const postsDirectory = path.join(process.cwd(), 'blogposts');
@@ -35,4 +38,29 @@ export function getSortedPostsData() {
             return -1
         }
     })
+}
+
+/**
+ * 
+ * @param id 
+ */
+export async function getPostData(id: string) {
+    // get the file path based on the id
+    const fullPath = path.join(postsDirectory, `${id}.md`)
+    // read the file contents
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
+
+    // use gray-matter to parse the post metadata section
+    const matterResult = matter(fileContents);
+    const processedContent = await remark().use(html).process(matterResult.content)
+
+    const contentHtml = processedContent.toString()
+    const blogPostWithHTML: BlogPost & {contentHtml: string} = {
+        id,
+        title: matterResult.data.title,
+        date: matterResult.data.date,
+        contentHtml
+    }
+    return blogPostWithHTML
+
 }
