@@ -10,6 +10,7 @@ export default function Search() {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setSearch('')
+        console.log(`搜索框变量： ${search}`)
         router.push(`/${search}/`)
     }
 

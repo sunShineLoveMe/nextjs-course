@@ -25,6 +25,8 @@ export async function generateMetadata({ params: { searchTerm } }: Props) {
 }
 
 export default async function SearchResults({ params: { searchTerm } }: Props) {
+
+    console.log(`搜索框动态路由变量： ${searchTerm}`)
     const wikiData: Promise<SearchResult> = getWikiResults(searchTerm)
     const data = await wikiData
     const results: Result[] | undefined = data?.query?.pages
